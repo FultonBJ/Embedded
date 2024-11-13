@@ -1,0 +1,33 @@
+e-Book by Gian Marco Iodice
+
+Combine artificial intelligence and ultra-low-power embedded devices to make the world smarter
+
+For Deep Neural Networks, the Rectified Linear Unit (ReLU) is the widespread adopted activation function (applied on the neurons output)
+
+float relu(float input){
+  return max(input, 0);
+}
+
+The computational simplicity makes this preferable to hyperbolic tangent or logistic sigmoid that require more computational resources
+
+Convolutional Neural Networks
+  a specialized deep neural network generally used in visual recognition tasks
+  when training a model for image classification, the CNN suffers from it's fully connected architecture. an RGB image of size 320x240 
+would require 230,400(320*240*3) weights for just one neuron. This problem leads to an overfit (where the model performs well on trained data 
+but does poorly on unseen data) Training the model to focus on desired features solves the overfit problem but early on was time-consuming and 
+domain specific. The next advance was thanks to convolution layers that make feature extraction part of the learning problem. Using a sliding 
+window and a dot product between weights the CNN became highly efficient at reducing the number of input signals per neuron. 
+Applying a 3x3 filter on the previous image only requires 27 weights (3*3*3). The convolution layers output produces a set of images (feature maps)
+commonly kept in a multidimensional memory object called a tensor. 
+
+- Place fully connected layers at the networks end to carry out the prediction stage.
+- Subsampling reduce the information propagated through the network and reduces overfitting when feeding fully connected layers
+// two subsampling methods //
+  - Skip the conv operator for some input pixels. This results in conv output with fewer spatial dimensions than the input ones.
+  - Adoption subsampling functions such as pooling layers.
+
+# Quantization
+ - The process of performing neural network computations in lower bit precision. 
+ - The widely adopted technique for MCU's applies quantization post-training and converts the 32-bit floating-point weights to 8-bit integer values.
+   This technique brings a 4x model size reduction and significant latency improvement with very little or no accuracy drop.
+
